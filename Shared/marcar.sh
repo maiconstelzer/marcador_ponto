@@ -31,10 +31,14 @@ marcar_ponto() {
 				nova_linha="$dia_atual;$mes_atual;$ano_atual;$marcacoes_texto;+00:00;"
 				
 				echo "De: ${linha_atual} Por: ${nova_linha}"
-				read
-				
-				sed -i "s/${linha_atual}/${nova_linha}/d" "$banco_dados"
 
+				# Escapar caracteres especiais nas variáveis
+				texto1_esc=$(sed 's/[]\/$*.^[]/\\&/g' <<< "$linha_atual")
+				texto2_esc=$(sed 's/[]\/$*.^[]/\\&/g' <<< "$nova_linha")
+				
+				# Realizar a substituição usando o comando sed
+				sed -i "s/$texto1_esc/$texto2_esc/g" "$banco_dados"
+			
 				break
 			fi
 

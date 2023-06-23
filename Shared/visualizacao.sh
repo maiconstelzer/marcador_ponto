@@ -22,7 +22,7 @@ montar_cabecalho_dados() {
 
 visualizar_dados() {
 	filtro=$1
-	linhasArquivo=$(cat "$banco_dados" | grep $filtro)
+	linhasArquivo=$(cat "$banco_dados" | grep "$filtro")
 	texto=""
 	mes_controle=""
 	ano_controle=""
@@ -43,14 +43,18 @@ visualizar_dados() {
 		
 		tamanho=$(("${#dados[@]}" - 1))
 		marcacoes=()
+		
 		horas_extras_array+=(${dados[$tamanho]})
 		
 		for ((i=3; i < $tamanho; i++)); do
-			marcacoes[$i-3]=${dados[$i]}
+			indice_marcacao=$(($i - 3))
+			marcacoes[$indice_marcacao]=${dados[$i]}
 		done
-		
+
 		clear
-		texto="$texto\n${dados[0]}\t\t${marcacoes[@]}\t\t\t\t${dados[$tamanho]}"
+		IFS=";" marcacoes_texto="${marcacoes[*]}"
+		
+		texto="$texto\n${dados[0]}\t\t$marcacoes_texto\t\t\t${dados[$tamanho]}"
 	done
 	
 	total_hora_extra=$(calcular_hora_extra_geral $horas_extras_array)

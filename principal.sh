@@ -24,13 +24,22 @@ funcionario='Maicon Douglas Stelzer'
 # ------------------------------------------------------------------------------------------------
 apresentar_menu() {
 	clear
-
-	echo 'Marcador de ponto PJ'
+	echo
+	echo '╔╦╗┌─┐┬─┐┌─┐┌─┐┌┬┐┌─┐┬─┐  ╔═╗┌─┐┌┐┌┌┬┐┌─┐'
+	echo '║║║├─┤├┬┘│  ├─┤ │││ │├┬┘  ╠═╝│ ││││ │ │ │'
+	echo '╩ ╩┴ ┴┴└─└─┘┴ ┴─┴┘└─┘┴└─  ╩  └─┘┘└┘ ┴ └─┘'
+	echo
+	echo '           ───────────▀▄'
+	echo '           ──█▄▄▄▄▄███▀▄─▄▄'
+	echo '           ▄▀──▀▄─▀▀█▀▀▄▀──▀▄'
+	echo '           ▀▄▀▀█▀▀████─▀▄──▄▀'
+	echo '           ──▀▀──────────▀▀'
 	echo
 	echo '1 - Visualização diária'
 	echo '2 - Visualização mensal'
 	echo '3 - Visualização anual'
 	echo '4 - Marcar ponto'
+	echo
 	echo 'Selecione uma opção...'
 
 	read opcao_selecionada
@@ -56,6 +65,7 @@ executar_opcao() {
 	esac
 	
 	apresentar_menu
+	executar_opcao
 }
 
 
